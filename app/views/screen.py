@@ -15,7 +15,7 @@ class MainScreen(Screen):
         self.db_manager = db_manager
     
     def on_start(self):
-        self.update_score_grid()
+        self.update_scores_display()
     
     def add_score(self):
         category = self.category_spinner.text
@@ -38,10 +38,10 @@ class MainScreen(Screen):
         
         self.db_manager.add_score(category, score, note)
         self.clear_inputs()
-        self.update_score_grid()
+        self.update_scores_display()
         self.status_label = "Score added successfully."
         
-    def update_score_grid(self):
+    def update_scores_display(self):
         scores = self.db_manager.get_scores()
         self.score_grid.clear_widgets()
         

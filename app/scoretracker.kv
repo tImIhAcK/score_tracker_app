@@ -1,0 +1,100 @@
+<MainScreen>:
+    category_spinner: category_spinner
+    score_input: score_input
+    note_input: note_input
+    score_grid: score_grid
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: '10dp'
+        padding: '20dp'
+
+        BoxLayout:
+            size_hint_y: 0.4
+            orientation: 'vertical'
+            spacing: 10
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.95, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Daily Score Tracker"
+                font_size: "24sp"
+                size_hint_y: None
+                height: dp(40)
+                color: 0.2, 0.2, 0.2, 1
+            
+            GridLayout:
+                cols: 2
+                spacing: 10
+                row_default_height: dp(40)
+                row_force_default: True
+
+                Label:
+                    text:'Category'
+                    color: 0.2, 0.2, 0.2, 1
+                Spinner:
+                    id: category_spinner
+                    text: 'Category'
+                    values: 'General', 'IQ Test', "Study", "Work", "Exercise"
+                    size_hint_x: 0.7
+                    background_color: 0.9, 0.9, 0.9, 1
+
+                Label:
+                    text: "Score (0-100)"
+                    color: 0.2, 0.2, 0.2, 1
+                TextInput:
+                    id: score_input
+                    multiline: False
+                    input_filter: 'float'
+                    size_hint_x: 0.7
+
+                Label:
+                    text:'Notes'
+                    color: 0.2, 0.2, 0.2, 1
+                TextInput:
+                    id: note_input
+                    multiline: True
+                    size_hint_x: 0.7
+
+            Button:
+                text: "Add Score"
+                size_hint_y: None
+                height: dp(50)
+                background_color: 0.2, 0.7, 0.3, 1
+                on_press: root.add_score()
+
+            Label:
+                text: root.status_label
+                color: rgba(0.2, 0.7, 0.3, 1) if "success" in root.status_label else rgba(0.8, 0.2, 0.2, 1)
+                size_hint_y: None
+                height: dp(30)
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: 0.6
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text:'Score History'
+                size_hint_y: None
+                height: dp(40)
+                color: 0.2, 0.2, 0.2, 1
+
+            ScrollView:
+                GridLayout:
+                    id: score_grid
+                    cols: 4
+                    spacing: 5
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: dp(40)
+                    row_force_default: True            

@@ -8,7 +8,7 @@ from kivy.core.window import Window
 class ScoreTrackerApp(App):
     def build(self):
         Window.size = (600, 800)
-        self.dd_manager = DatabaseManager()
+        self.db_manager = DatabaseManager()
         sm = ScreenManager()
         main_screen = MainScreen(self.db_manager, name='main')
         sm.add_widget(main_screen)
